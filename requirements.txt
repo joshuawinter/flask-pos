@@ -11,3 +11,7 @@ pyparsing==2.2.0
 six==1.10.0
 SQLAlchemy==1.1.10
 Werkzeug==0.12.2
+#sudo apt-get install python-mysqldb
+#sudo apt-get install mysql-server
+#sudo apt-get install python-dev
+#sudo apt-get install default-libmysqlclient-dev
