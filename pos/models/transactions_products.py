@@ -9,7 +9,9 @@ class TransactionProducts(db.Model):
 	product_id = db.Column(db.Integer, db.ForeignKey("products.id"), nullable=False)
 	product_qty = db.Column(db.Integer, nullable=False)
 	transaction = relationship("Transactions", backref="transaction_products")
-	product = relationship("Products", backref="transaction_products")
+	#transaction = relationship("Transactions")
+	#product = relationship("Products", backref="transaction_products")
+	product = relationship("Products")
 
 @event.listens_for(db.session,"before_flush")
 def reduce_stock_product(*args):
