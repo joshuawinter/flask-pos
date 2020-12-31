@@ -1,9 +1,3 @@
--- MySQL dump 10.13  Distrib 5.7.18, for Linux (x86_64)
---
--- Host: localhost    Database: pos
--- ------------------------------------------------------
--- Server version	5.7.18-0ubuntu0.17.04.1
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -15,99 +9,53 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `products`
---
 CREATE SCHEMA IF NOT EXISTS gofish;
+-- schema created
 
-
-DROP TABLE IF EXISTS `products`;
+DROP TABLE IF EXISTS `products` ;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-create table `products`
-(
-	`id` int auto_increment primary key,
-	`name` varchar(45) not null,
-	`price` int not null,
-	`stock` int not null
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+CREATE TABLE `products`(
+    `id` INT(11) AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(45) NOT NULL,
+    `price` INT(11) NOT NULL,
+    `stock` INT(11) NOT NULL,
+    `event_time` DATETIME NOT NULL
+)  ENGINE=INNODB DEFAULT CHARSET=LATIN1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `products`
---
+alter table products auto_increment=1000000;
+INSERT INTO `products` VALUES (1000000,'Red Snapper',20,1000,'2020-12-31 00:00:00');
 
-LOCK TABLES `products` WRITE;
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'sabun',7000,90),(2,'indomie',4000,80),(3,'pensil',1500,12);
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `transaction_products`
---
+-- products created and seeded
 
 DROP TABLE IF EXISTS `transaction_products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transaction_products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT primary key,
   `transaction_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
   `product_qty` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `event_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `transaction_products`
---
+alter table transaction_products auto_increment=2000000;
+INSERT INTO `gofish`.`transaction_products` (`id`, `transaction_id`, `product_id`, `product_qty`, `event_time`) VALUES ('2000000', '3000000', '1000000', '20', '2020-12-31 00:00:00');
 
-LOCK TABLES `transaction_products` WRITE;
-/*!40000 ALTER TABLE `transaction_products` DISABLE KEYS */;
-INSERT INTO `transaction_products` VALUES (3,5,1,10),(4,5,2,20);
-/*!40000 ALTER TABLE `transaction_products` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `transactions`
---
+-- transaction_products created and seeded
 
 DROP TABLE IF EXISTS `transactions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `transactions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `create_on` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+    `customer_transaction_id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `event_time` DATETIME NOT NULL
+)  ENGINE=INNODB DEFAULT CHARSET=LATIN1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `transactions`
---
+alter table transactions auto_increment=3000000;
+INSERT INTO `gofish`.`transactions` (`customer_transaction_id`, `event_time`) VALUES ('3000000', '2020-12-31 00:00:00');
 
-LOCK TABLES `transactions` WRITE;
-/*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (5,'2017-06-09 17:03:35');
-/*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Dumping events for database 'pos'
---
-
---
--- Dumping routines for database 'pos'
---
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2017-06-09 20:18:30
+-- transactions created and seeded

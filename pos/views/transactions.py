@@ -33,7 +33,7 @@ def transactions_add():
 		# loop product
 		for i, product in enumerate(products):
 			transactions_products = TransactionProducts()
-			transactions_products.transaction_id = transactions.id
+			transactions_products.transaction_id = transactions.customer_transaction_id
 			transactions_products.product_id = int(product)
 			transactions_products.product
 			transactions_products.product_qty = int(products_qty[i])

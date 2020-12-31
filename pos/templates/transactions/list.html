@@ -13,7 +13,7 @@
         {% for transaction in transactions %}
         <tr>
             <td>
-                {{ transaction.id }}
+                {{ transaction.customer_transaction_id }}
             </td>
             <td>
                 <ul>
@@ -23,7 +23,7 @@
                 </ul>
             </td>
             <td>
-                {{ transaction.create_on }}
+                {{ transaction.event_time }}
             </td>
         </tr>
         {% endfor %}
